@@ -1,0 +1,134 @@
+:root{
+  --bg:#fff7f9; --surface:#ffffff; --text:#2a1620; --muted:#9a7f8a; --line:#f3dfe6;
+  --ai-bubble:#f4e9ed; --ai-text:#2a1620; --input-bg:#ffffff; --accent:#e1306c;
+  --grad:linear-gradient(135deg,#feda75 0%,#fa7e1e 22%,#d62976 52%,#962fbf 80%,#4f5bd5 100%);
+  --me:linear-gradient(135deg,#ff4d8d 0%,#c13584 55%,#8a3ab9 100%);
+  --green:#2ecc71; --shadow:0 8px 30px rgba(193,53,132,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#140a10; --surface:#1d1016; --text:#fbeef3; --muted:#a58e98; --line:#32202a;
+    --ai-bubble:#2b1b23; --ai-text:#fbeef3; --input-bg:#1d1016; --shadow:0 8px 30px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Bengali","Hind Siliguri",Roboto,sans-serif;
+  background:var(--bg);color:var(--text);overflow:hidden;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.vh{visibility:hidden}
+
+/* ring + avatar */
+.ring{width:46px;height:46px;border-radius:50%;padding:2.5px;background:var(--grad);flex:none}
+.ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid var(--surface);display:block;background:var(--surface)}
+.ring.big{width:96px;height:96px;padding:3px}
+
+/* login */
+.login{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+.login[hidden]{display:none!important}
+.login-card{width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.login-card h1{font-size:22px;margin-top:6px}
+.login-card p{font-size:14px;color:var(--muted)}
+.pw{width:100%;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:14px;font:inherit;font-size:16px;outline:0;text-align:center}
+.pw:focus{border-color:var(--accent)}
+.login-err{min-height:18px;color:var(--accent)!important;font-size:13.5px!important}
+
+/* app shell */
+.app{
+  height:100dvh;max-width:520px;margin:0 auto;display:flex;flex-direction:column;
+  background:var(--bg);position:relative;padding-top:env(safe-area-inset-top,0px);
+}
+.top{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface);
+  border-bottom:1px solid var(--line);position:relative;z-index:5;
+}
+.back{width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
+.back svg,.dots svg{width:24px;height:24px;stroke:var(--text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.who{flex:1;min-width:0}
+.who b{display:block;font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.who small{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.who small i{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}
+.dots{width:38px;height:38px;display:grid;place-items:center;border-radius:50%}
+.dots:active,.back:active{background:var(--ai-bubble)}
+.menu{
+  position:absolute;right:10px;top:calc(100% - 4px);background:var(--surface);border:1px solid var(--line);
+  border-radius:14px;box-shadow:var(--shadow);min-width:190px;padding:6px;display:none;z-index:20;
+}
+.menu.open{display:block}
+.menu button{display:flex;width:100%;align-items:center;gap:10px;padding:12px;border-radius:10px;font-size:15px;text-align:left}
+.menu button:active{background:var(--ai-bubble)}
+
+/* chat */
+.chat{flex:1;overflow-y:auto;padding:14px 12px 8px;display:flex;flex-direction:column;gap:3px;scroll-behavior:smooth;overscroll-behavior:contain}
+.intro{display:flex;flex-direction:column;align-items:center;padding:18px 0 14px;gap:4px;text-align:center}
+.intro .ring{width:84px;height:84px;padding:3px}
+.intro b{font-size:18px;margin-top:6px}
+.intro span{font-size:13px;color:var(--muted)}
+.row{display:flex;flex-direction:column;max-width:78%}
+.row.me{align-self:flex-end;align-items:flex-end}
+.row.ai{align-self:flex-start;align-items:flex-start}
+.msg{
+  padding:10px 14px;font-size:15.5px;line-height:1.4;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere;
+  border-radius:22px;
+}
+.me .msg{background:var(--me);color:#fff;border-bottom-right-radius:6px}
+.ai .msg{background:var(--ai-bubble);color:var(--ai-text);border-bottom-left-radius:6px}
+.err .msg{background:transparent;border:1px dashed var(--accent);color:var(--accent);font-size:14px}
+.time{font-size:11px;color:var(--muted);margin:2px 6px 6px}
+.pop{animation:pop .18s ease-out}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.typing .msg{display:flex;gap:5px;padding:14px 16px}
+.typing .msg span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bl 1.2s infinite}
+.typing .msg span:nth-child(2){animation-delay:.2s}
+.typing .msg span:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+
+/* composer */
+.composer{padding:8px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg)}
+.pill{display:flex;align-items:flex-end;gap:6px;background:var(--input-bg);border:1px solid var(--line);border-radius:26px;padding:6px 6px 6px 16px}
+.pill textarea{
+  flex:1;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:16px;
+  resize:none;max-height:120px;padding:8px 0;line-height:1.35;
+}
+.pill textarea::placeholder{color:var(--muted)}
+.send{width:40px;height:40px;border-radius:50%;background:var(--me);display:grid;place-items:center;flex:none;transition:transform .1s,opacity .2s}
+.send:active{transform:scale(.9)}
+.send:disabled{opacity:.4}
+.send svg{width:20px;height:20px;fill:#fff}
+
+/* admin sheet */
+.sheet{position:fixed;inset:0;background:var(--bg);z-index:50;display:none;flex-direction:column;max-width:520px;margin:0 auto}
+.sheet.open{display:flex}
+.sheet-h{display:flex;align-items:center;justify-content:space-between;padding:calc(12px + env(safe-area-inset-top,0px)) 14px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
+.sheet-h b{font-size:17px}
+.sheet-h button{padding:8px 10px;border-radius:10px;font-weight:600;color:var(--accent)}
+.sheet-b{flex:1;overflow-y:auto;padding:16px 16px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:16px}
+.form-view{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:13.5px;font-weight:600}
+.field small,.card>small{font-size:12px;color:var(--muted);line-height:1.4}
+.field input[type=text],.field input[type=url],.field textarea{
+  width:100%;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit;font-size:16px;outline:0
+}
+.field textarea{min-height:160px;resize:vertical;line-height:1.4}
+.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.avatar-edit{display:flex;align-items:center;gap:14px}
+.avatar-edit .ring{width:72px;height:72px}
+.btn{padding:12px 16px;border-radius:12px;font-weight:600;font-size:15px;background:var(--ai-bubble)}
+.btn.primary{background:var(--me);color:#fff}
+.btn.danger{color:var(--accent);border:1px solid var(--line);background:transparent}
+.btn.wide{width:100%}
+.btn.grow{flex:1}
+.btn.small{font-size:13px;padding:9px 12px}
+.btn:disabled{opacity:.5}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:14px}
+.lock{margin:auto;width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;align-items:center;padding:24px;text-align:center}
+.lock h2{font-size:20px}
+.lock p{font-size:13.5px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#2a1620;color:#fff;padding:10px 16px;border-radius:20px;font-size:14px;z-index:200;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}

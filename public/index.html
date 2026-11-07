@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff7f9">
+<meta name="robots" content="noindex, nofollow">
+<title>Angel Sadia</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Chat -->
+<div class="app" id="app">
+  <header class="top">
+    <button class="back" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="ring"><img id="hAvatar" alt=""></div>
+    <div class="who"><b id="hName">Angel Sadia</b><small><i></i>Active now</small></div>
+    <button class="dots" id="dotsBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/></svg></button>
+    <div class="menu" id="menu">
+      <button id="mAdmin">⚙️ Admin panel</button>
+      <button id="mClear">🧹 Clear chat</button>
+    </div>
+  </header>
+
+  <main class="chat" id="chat" aria-live="polite"></main>
+
+  <footer class="composer">
+    <div class="pill">
+      <textarea id="input" rows="1" placeholder="Message..." enterkeyhint="send"></textarea>
+      <button class="send" id="sendBtn" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 5 6.3 5c1.9 0 3.4 1 4.2 2.4h3C14.3 6 15.8 5 17.7 5 21 5 23.1 8.3 21.6 11.8 19.5 16.4 12 21 12 21z"/></svg></button>
+    </div>
+  </footer>
+</div>
+
+<!-- Admin panel -->
+<section class="sheet" id="sheet" aria-label="Admin panel">
+  <div class="sheet-h"><button id="aClose">Close</button><b>Admin panel</b><button id="aSave" class="vh">Save</button></div>
+  <div class="sheet-b">
+    <div class="lock" id="lockView">
+      <h2>Admin access</h2>
+      <p>Enter the admin password to continue.</p>
+      <input type="password" id="admPw" class="pw" autocomplete="off" placeholder="Admin password">
+      <button class="btn primary" id="admGo">Unlock</button>
+      <p class="login-err" id="admErr" role="alert"></p>
+    </div>
+
+    <div class="form-view" id="formView" hidden>
+      <div class="card">
+        <div class="field">
+          <label>Profile picture</label>
+          <div class="avatar-edit">
+            <div class="ring"><img id="aAvatar" alt=""></div>
+            <div class="btns">
+              <button class="btn" id="pickImg">Upload photo</button>
+              <button class="btn danger" id="resetImg">Reset</button>
+            </div>
+          </div>
+          <input type="file" id="imgFile" accept="image/*" hidden>
+          <small>Or paste an image link (https only):</small>
+          <input type="url" id="imgUrl" placeholder="https://...">
+        </div>
+        <div class="field"><label for="aName">AI name</label><input type="text" id="aName" maxlength="40"></div>
+        <div class="field"><label for="aGreet">First message</label><input type="text" id="aGreet" maxlength="200"></div>
+      </div>
+
+      <div class="card">
+        <div class="field">
+          <label for="aPrompt">Behaviour</label>
+          <textarea id="aPrompt" maxlength="20000"></textarea>
+          <small>Describe how she talks, her mood, her language and how she treats you.</small>
+        </div>
+        <div class="field">
+          <label>Chat file (.txt)</label>
+          <div class="btns">
+            <button class="btn" id="pickTxt">Upload .txt</button>
+            <button class="btn danger" id="clearTxt">Remove</button>
+          </div>
+          <input type="file" id="txtFile" accept=".txt,text/plain" hidden>
+          <small id="txtInfo">No file loaded.</small>
+          <small>She reads this file to learn the style and details, such as an old chat, memories or notes.</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="field">
+          <label for="aModel">Model</label>
+          <input type="text" id="aModel" placeholder="gemini-3.5-flash">
+          <button class="btn" id="findModels" type="button">Find available models</button>
+          <small id="modelStatus"></small>
+          <div class="btns" id="modelList"></div>
+        </div>
+        <small>The API key and passwords are stored safely on the server (Vercel environment variables), so they are not shown here.</small>
+      </div>
+
+      <div class="btns">
+        <button class="btn primary grow" id="aSave2">Save changes</button>
+        <button class="btn danger" id="aReset">Reset all</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
