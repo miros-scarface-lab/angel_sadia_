@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=clean3.0">
+    <link rel="stylesheet" href="/style.css?v=clean3.1">
   </head>
   <body>
     <!-- Floating Romantic Heart Particle Layer -->
@@ -93,6 +93,14 @@
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
               <span>Export Chat</span>
+            </button>
+            <button type="button" id="menu-developer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <span>Developer & Contact</span>
             </button>
           </div>
         </div>
@@ -206,10 +214,56 @@
       </div>
     </div>
 
+    <!-- ================= DEVELOPER & CONTACT MODAL ================= -->
+    <div class="modal" id="dev-modal" role="dialog" aria-modal="true" hidden>
+      <div class="modal-backdrop" id="dev-backdrop"></div>
+      <div class="modal-content dev-modal-content">
+        <div class="modal-header">
+          <h3>Developer & Contact</h3>
+          <button type="button" class="modal-close-btn" id="dev-close-btn" aria-label="Close">✕</button>
+        </div>
+        <div class="dev-card-body">
+          <div class="dev-badge-icon">🔬</div>
+          <h3 class="dev-title">Angel Sadia AI</h3>
+          <div class="dev-lab-banner">
+            <span class="dev-lab-prefix">Developed at :</span>
+            <strong class="dev-lab-name">Miros Lab</strong>
+          </div>
+          <div class="dev-details-card">
+            <div class="dev-detail-row">
+              <span class="dev-detail-label">🏢 Organization</span>
+              <span class="dev-detail-val">Miros Lab</span>
+            </div>
+            <div class="dev-detail-row">
+              <span class="dev-detail-label">📧 Contact Email</span>
+              <a href="mailto:acemaks007@gmail.com" class="dev-link">acemaks007@gmail.com</a>
+            </div>
+            <div class="dev-detail-row">
+              <span class="dev-detail-label">🐙 GitHub</span>
+              <a href="https://github.com/miros-scarface-lab" target="_blank" rel="noopener noreferrer" class="dev-link">@miros-scarface-lab</a>
+            </div>
+            <div class="dev-detail-row">
+              <span class="dev-detail-label">🤖 AI Model</span>
+              <span class="dev-detail-val">Gemini 3.5 Flash-Lite</span>
+            </div>
+          </div>
+          <div class="dev-actions">
+            <a href="mailto:acemaks007@gmail.com" class="dev-contact-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>Contact Developer</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Toast Notification -->
     <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
 
     <!-- Main JavaScript Application -->
-    <script src="/app.js?v=clean3.0" type="module"></script>
+    <script src="/app.js?v=clean3.1" type="module"></script>
   </body>
 </html>

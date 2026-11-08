@@ -139,6 +139,11 @@ Bangladeshi Conversational Style:
   const profileCloseBtn = $("profile-close-btn");
   const profileBackdrop = $("profile-backdrop");
 
+  // Developer & Contact Modal Elements
+  const devModal = $("dev-modal");
+  const devCloseBtn = $("dev-close-btn");
+  const devBackdrop = $("dev-backdrop");
+
   /* ================= 6. WEB AUDIO SYNTHESIZER ================= */
   let audioCtx = null;
   function getAudioContext() {
@@ -539,6 +544,15 @@ Bangladeshi Conversational Style:
     if (profileModal) profileModal.hidden = true;
   }
 
+  function openDevModal() {
+    if (headerDropdown) headerDropdown.hidden = true;
+    if (devModal) devModal.hidden = false;
+  }
+
+  function closeDevModal() {
+    if (devModal) devModal.hidden = true;
+  }
+
   /* ================= 13. CLEAR CHAT ACTION ================= */
   function showClearChatDialog() {
     if (headerDropdown) headerDropdown.hidden = true;
@@ -686,6 +700,11 @@ Bangladeshi Conversational Style:
       if (headerDropdown) headerDropdown.hidden = true;
       exportChatHistory();
     });
+
+    // Developer & Contact Option in 3-Dots Menu
+    $("menu-developer")?.addEventListener("click", openDevModal);
+    devCloseBtn?.addEventListener("click", closeDevModal);
+    devBackdrop?.addEventListener("click", closeDevModal);
 
     // Profile Modal Triggers & Close
     headerAvatarWrap?.addEventListener("click", openProfileModal);
