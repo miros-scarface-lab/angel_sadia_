@@ -1,107 +1,215 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#fff7f9">
-<meta name="robots" content="noindex, nofollow">
-<title>Angel Sadia</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#ff2d55">
+    <title>Angel Sadia · Instagram</title>
+    <link rel="icon" href="/profile.jpg" type="image/jpeg">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=clean3.0">
+  </head>
+  <body>
+    <!-- Floating Romantic Heart Particle Layer -->
+    <div id="particles-container" class="particles-container" aria-hidden="true"></div>
 
-<!-- Chat -->
-<div class="app" id="app">
-  <header class="top">
-    <button class="back" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-    <div class="ring"><img id="hAvatar" alt=""></div>
-    <div class="who"><b id="hName">Angel Sadia</b><small><i></i>Active now</small></div>
-    <button class="dots" id="dotsBtn" aria-label="Menu"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><circle cx="12" cy="19" r="1.2" fill="currentColor"/></svg></button>
-    <div class="menu" id="menu">
-      <button id="mAdmin">⚙️ Admin panel</button>
-      <button id="mClear">🧹 Clear chat</button>
+    <!-- Main Instagram Love DM Shell -->
+    <div class="ig-shell">
+      <!-- ================= 1. INSTAGRAM TOP NAVIGATION BAR ================= -->
+      <header class="ig-header">
+        <div class="ig-header-left">
+          <button class="ig-nav-btn" id="ig-back-btn" type="button" title="Back" aria-label="Back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="ig-avatar-wrap" id="header-avatar-wrap" title="View Profile">
+            <img src="/profile.jpg" alt="Angel Sadia" class="ig-avatar-img" id="header-avatar">
+            <span class="ig-online-badge"></span>
+          </div>
+          <div class="ig-header-meta" id="header-meta-wrap">
+            <div class="ig-name-row">
+              <span class="ig-name" id="header-name">Angel Sadia</span>
+              <span class="ig-verified" title="Verified">✦</span>
+            </div>
+            <span class="ig-status" id="header-status">Active now</span>
+          </div>
+        </div>
+
+        <div class="ig-header-right">
+          <!-- Audio Call Icon (Instagram style) -->
+          <button class="ig-nav-btn" id="ig-call-audio-btn" type="button" title="Audio Call" aria-label="Audio Call">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.43-3.9-6.86-6.82l1.97-1.61a.99.99 0 0 0 .25-1.02c-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+            </svg>
+          </button>
+
+          <!-- Video Call Icon (Instagram style) -->
+          <button class="ig-nav-btn" id="ig-call-video-btn" type="button" title="Video Call" aria-label="Video Call">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+            </svg>
+          </button>
+
+          <!-- Instagram 3-Dot Options Button -->
+          <button class="ig-nav-btn" id="ig-menu-btn" type="button" title="Chat Options" aria-label="Chat Options">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="2.2"/>
+              <circle cx="19" cy="12" r="2.2"/>
+              <circle cx="5" cy="12" r="2.2"/>
+            </svg>
+          </button>
+
+          <!-- Options Dropdown Menu (Clean: Clear Chat, View Profile, Dark Mode, Export) -->
+          <div class="ig-dropdown" id="header-dropdown" hidden>
+            <button type="button" id="menu-clear" class="danger-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              <span>Clear Chat</span>
+            </button>
+            <hr>
+            <button type="button" id="menu-view-profile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>View Profile</span>
+            </button>
+            <button type="button" id="menu-theme">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <span>Toggle Dark Mode</span>
+            </button>
+            <button type="button" id="menu-export">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export Chat</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- ================= 2. 100% INSTAGRAM LOVE CHAT FEED ================= -->
+      <main class="ig-chat-feed" id="chat-content" role="log" aria-live="polite">
+        <!-- Minimal Instagram Profile Intro at top of thread -->
+        <div class="ig-profile-intro">
+          <div class="ig-avatar-story-ring" id="intro-story-ring" title="View Profile">
+            <img src="/profile.jpg" alt="Angel Sadia" id="hero-avatar">
+          </div>
+          <h2 class="ig-intro-name" id="hero-name">Angel Sadia <span class="ig-verified">✦</span></h2>
+          <span class="ig-intro-handle">angel.sadia · Instagram</span>
+          <span class="ig-intro-theme-badge">❤️ Love Theme</span>
+          <span class="ig-intro-bio">In love with you · Always texting you first</span>
+          <button type="button" class="ig-intro-btn" id="hero-profile-btn">View profile</button>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="ig-message-list" id="message-list"></div>
+
+        <!-- Instagram 3-Dots Typing Indicator -->
+        <div class="ig-typing-row" id="typing-row" hidden>
+          <img src="/profile.jpg" alt="" class="ig-typing-avatar">
+          <div class="ig-typing-pill">
+            <span class="ig-dot"></span>
+            <span class="ig-dot"></span>
+            <span class="ig-dot"></span>
+          </div>
+        </div>
+
+        <!-- Network / Send Error Banner -->
+        <div class="error-banner" id="error-banner" role="alert" hidden>
+          <span id="error-text">Couldn't send message. Tap to retry.</span>
+          <button type="button" id="error-retry-btn">Retry</button>
+        </div>
+      </main>
+
+      <!-- ================= 3. INSTAGRAM LOVE DM COMPOSER (CLEAN: NO CAMERA) ================= -->
+      <footer class="ig-composer-wrap">
+        <form class="ig-composer" id="composer-form">
+          <!-- Auto-expanding Message Textarea -->
+          <textarea
+            id="message-input"
+            name="message"
+            rows="1"
+            maxlength="4000"
+            placeholder="Message..."
+            autocomplete="off"
+            aria-label="Write a message"
+          ></textarea>
+
+          <!-- Instant Heart Button (Instagram Love Theme tap to send love) -->
+          <button class="ig-heart-btn" id="composer-heart-btn" type="button" title="Send Love" aria-label="Send Love">
+            ❤️
+          </button>
+
+          <!-- Send Text Button (Visible when typing) -->
+          <button class="ig-send-btn" id="send-btn" type="submit" aria-label="Send Message" disabled>
+            Send
+          </button>
+        </form>
+      </footer>
     </div>
-  </header>
 
-  <main class="chat" id="chat" aria-live="polite"></main>
-
-  <footer class="composer">
-    <div class="pill">
-      <textarea id="input" rows="1" placeholder="Message..." enterkeyhint="send"></textarea>
-      <button class="send" id="sendBtn" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 5 6.3 5c1.9 0 3.4 1 4.2 2.4h3C14.3 6 15.8 5 17.7 5 21 5 23.1 8.3 21.6 11.8 19.5 16.4 12 21 12 21z"/></svg></button>
-    </div>
-  </footer>
-</div>
-
-<!-- Admin panel -->
-<section class="sheet" id="sheet" aria-label="Admin panel">
-  <div class="sheet-h"><button id="aClose">Close</button><b>Admin panel</b><button id="aSave" class="vh">Save</button></div>
-  <div class="sheet-b">
-    <div class="lock" id="lockView">
-      <h2>Admin access</h2>
-      <p>Enter the admin password to continue.</p>
-      <input type="password" id="admPw" class="pw" autocomplete="off" placeholder="Admin password">
-      <button class="btn primary" id="admGo">Unlock</button>
-      <p class="login-err" id="admErr" role="alert"></p>
+    <!-- ================= INSTAGRAM-STYLE CLEAR CHAT CONFIRM MODAL ================= -->
+    <div class="ig-confirm-modal" id="clear-confirm-modal" hidden>
+      <div class="ig-confirm-backdrop" id="clear-confirm-backdrop"></div>
+      <div class="ig-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="confirm-clear-title">
+        <div class="ig-confirm-body">
+          <div class="ig-confirm-icon">🧹</div>
+          <h3 id="confirm-clear-title">Clear chat?</h3>
+          <p>This will delete all messages with Angel Sadia. You will start a fresh conversation.</p>
+        </div>
+        <div class="ig-confirm-buttons">
+          <button type="button" class="ig-confirm-action-btn danger" id="btn-confirm-clear">Clear</button>
+          <button type="button" class="ig-confirm-action-btn" id="btn-cancel-clear">Cancel</button>
+        </div>
+      </div>
     </div>
 
-    <div class="form-view" id="formView" hidden>
-      <div class="card">
-        <div class="field">
-          <label>Profile picture</label>
-          <div class="avatar-edit">
-            <div class="ring"><img id="aAvatar" alt=""></div>
-            <div class="btns">
-              <button class="btn" id="pickImg">Upload photo</button>
-              <button class="btn danger" id="resetImg">Reset</button>
+    <!-- ================= SADIA'S PROFILE MODAL ================= -->
+    <div class="modal" id="profile-modal" role="dialog" aria-modal="true" hidden>
+      <div class="modal-backdrop" id="profile-backdrop"></div>
+      <div class="modal-content profile-modal-content">
+        <div class="modal-header">
+          <h3>Profile</h3>
+          <button type="button" class="modal-close-btn" id="profile-close-btn">✕</button>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-avatar-large">
+            <img src="/profile.jpg" alt="Angel Sadia" id="profile-modal-avatar">
+            <span class="profile-status-dot"></span>
+          </div>
+          <h3 class="profile-card-name" id="profile-modal-name">Angel Sadia <span class="ig-verified">✦</span></h3>
+          <span class="profile-card-handle">@angel.sadia</span>
+          <span class="profile-tag">❤️ Instagram Love Theme</span>
+          <p class="profile-card-bio">Your loving Bangladeshi girlfriend. Sweet, playful, slightly moody, and forever yours.</p>
+
+          <div class="soulmate-meter">
+            <div class="soulmate-meter-header">
+              <span>Soulmate Bond</span>
+              <strong id="soulmate-percent">100% In Love</strong>
+            </div>
+            <div class="soulmate-bar-bg">
+              <div class="soulmate-bar-fill" id="soulmate-progress" style="width: 100%;"></div>
             </div>
           </div>
-          <input type="file" id="imgFile" accept="image/*" hidden>
-          <small>Or paste an image link (https only):</small>
-          <input type="url" id="imgUrl" placeholder="https://...">
         </div>
-        <div class="field"><label for="aName">AI name</label><input type="text" id="aName" maxlength="40"></div>
-        <div class="field"><label for="aGreet">First message</label><input type="text" id="aGreet" maxlength="200"></div>
-      </div>
-
-      <div class="card">
-        <div class="field">
-          <label for="aPrompt">Behaviour</label>
-          <textarea id="aPrompt" maxlength="20000"></textarea>
-          <small>Describe how she talks, her mood, her language and how she treats you.</small>
-        </div>
-        <div class="field">
-          <label>Chat file (.txt)</label>
-          <div class="btns">
-            <button class="btn" id="pickTxt">Upload .txt</button>
-            <button class="btn danger" id="clearTxt">Remove</button>
-          </div>
-          <input type="file" id="txtFile" accept=".txt,text/plain" hidden>
-          <small id="txtInfo">No file loaded.</small>
-          <small>She reads this file to learn the style and details, such as an old chat, memories or notes.</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="field">
-          <label for="aModel">Model</label>
-          <input type="text" id="aModel" placeholder="gemini-3.5-flash">
-          <button class="btn" id="findModels" type="button">Find available models</button>
-          <small id="modelStatus"></small>
-          <div class="btns" id="modelList"></div>
-        </div>
-        <small>The API key and passwords are stored safely on the server (Vercel environment variables), so they are not shown here.</small>
-      </div>
-
-      <div class="btns">
-        <button class="btn primary grow" id="aSave2">Save changes</button>
-        <button class="btn danger" id="aReset">Reset all</button>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="toast" id="toast"></div>
-<script src="app.js"></script>
-</body>
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toast-container" role="status" aria-live="polite"></div>
+
+    <!-- Main JavaScript Application -->
+    <script src="/app.js?v=clean3.0" type="module"></script>
+  </body>
 </html>

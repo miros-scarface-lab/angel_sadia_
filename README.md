@@ -1,68 +1,90 @@
-# Angel Sadia (secure version)
+# 💖 Angel Sadia — Instagram Love DM Girlfriend AI
 
-Mobile chat site with a Gemini-powered girlfriend persona.
-The API key and passwords belong in server-side environment variables (such as Vercel), never in the browser or in GitHub.
+> **"Khaiso? Don’t say no, I can already guess 😒❤️"**
 
-## Folder layout
+A pure, distraction-free **Instagram Love DM** web chat featuring **Angel Sadia**, a loving, caring, and playful Bangladeshi girlfriend powered by Google Gemini.
+
+---
+
+## ✨ Features
+
+- **Pure Instagram Love DM Interface**:
+  - Distraction-free direct messaging interface matching Instagram DM.
+  - Signature Instagram Love gradient bubbles (`#ff1b6b` → `#ff4582` → `#9b51e0`).
+  - Minimal top navigation bar with active online status, doll profile photo, and options.
+  - Double-tap or double-click any message to trigger a bursting Instagram ❤️ heart reaction badge with floating romantic hearts.
+  - Minimal text composer with auto-expanding `Message...` textarea and quick-tap ❤️ love button.
+  - Three-dot menu (`⋯`) with **Clear Chat** (with Instagram-style confirmation dialog), **View Profile**, **Dark Mode Toggle**, and **Export Chat**.
+- **Authentic Bangladeshi Girlfriend Persona**:
+  - Texts naturally in conversational Banglish, everyday Bengali, or English.
+  - Affectionate, playful, with cute "অভিমান" (playful sulking when you are late or busy) that melts away with sweet love.
+  - Realistic texting style: short, natural 1–3 sentence texts with cute emojis.
+- **Lightning Fast Responses**:
+  - Powered by `gemini-3.5-flash-lite` for instantaneous ~1.2s replies with zero fake delays.
+  - Pre-configured default Gemini API key for instant out-of-the-box local and Vercel usage.
+- **Permanent Google Sheets Chat Logging (Optional)**:
+  - Automatically logs every visitor's individual chat session row-by-row into a private Google Spreadsheet.
+  - Even if users clear their chat on their device, your Google Sheet keeps a permanent record!
+  - 100% free, setup takes 2 minutes using `google-sheet-script.js`.
+- **Sound Effects & Floating Hearts**:
+  - Soft romantic Web Audio chimes for sent, received, and heart reactions.
+  - Floating romantic heart particles.
+- **Keepsake Export & Dark Mode**:
+  - Toggle between Instagram Love Light and Midnight Dark themes.
+  - Export chat transcript as a saved keepsake file.
+
+---
+
+## 🚀 Running Locally
+
+Requires **Node.js 18** or newer. No third-party npm packages required (pure zero-dependency standard library).
+
+```bash
+# 1. Start the server
+npm start
+
+# 2. Open in your browser
+http://localhost:3000
+```
+
+---
+
+## 📊 Google Sheets Chat Logging (2-Minute Setup)
+
+To permanently log user conversations into a Google Sheet:
+
+1. Open [sheets.new](https://sheets.new) and create a sheet named **`Angel Sadia Chat Logs`**.
+2. Go to **Extensions** → **Apps Script**, delete the template, and paste the code from [`google-sheet-script.js`](./google-sheet-script.js).
+3. Click **Deploy** → **New deployment** → Select type **Web app**:
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+4. Copy the Web app URL and add it to your `.env` or Vercel Environment Variables:
+   ```env
+   GOOGLE_SHEET_WEBHOOK_URL="https://script.google.com/macros/s/AKfycb.../exec"
+   ```
+
+---
+
+## 📁 Clean Project Structure
 
 ```
 angel-sadia/
-  api/            server functions (hold the secrets)
-    _lib.js       helpers (tokens, rate limit)
-    auth.js       login for site and admin
-    chat.js       sends messages to Gemini
-    models.js     lists Gemini models (admin only)
-  public/         what visitors download
-    index.html
-    style.css
-    app.js
-  vercel.json     security headers
-  package.json
-  .env.example    names of the secrets (no real values)
-  .gitignore
+├── package.json              # Node.js project manifest (zero dependencies)
+├── server.mjs                # Standalone Node.js server & Gemini proxy
+├── vercel.json               # Vercel serverless deployment config
+├── google-sheet-script.js    # Google Apps Script code for spreadsheet logging
+├── .env.example              # Environment variables template
+├── .gitignore                # Git ignore
+├── README.md                 # Documentation
+├── api/                      # Vercel serverless functions
+│   ├── _lib.js               # Shared utilities & Gemini helpers
+│   ├── chat.js               # /api/chat endpoint with session logging
+│   ├── models.js             # /api/models endpoint
+│   └── health.js             # /api/health endpoint
+└── public/                   # Frontend client assets
+    ├── index.html            # Instagram Love DM layout
+    ├── style.css             # Instagram Love DM styling & animations
+    ├── app.js                # Frontend chat client & audio synthesizer
+    ├── profile.jpg           # Angel Sadia doll profile picture
+    └── manifest.json         # PWA manifest
 ```
-
-## Configuration
-
-No credentials are stored in this repository. Configure the values below in your hosting provider's
-server-side environment variables (for example, Vercel > Project > Settings > Environment Variables).
-`SITE_PASSWORD` can be empty to allow anyone with the site link to chat; set a unique password to
-require sign-in.
-
-## Deploy in 5 steps
-
-1. **Create a new Google API key** in Google AI Studio and revoke any previously hard-coded key.
-   In Google Cloud Console you can also limit the key to the Generative Language API.
-2. **Create secrets.** Make four values:
-   - `GEMINI_API_KEY`: your new Gemini key
-   - `SITE_PASSWORD`: the password you type to open the chat
-   - `ADMIN_PASSWORD`: a different password for the admin panel
-   - `AUTH_SECRET`: a long random string. On Windows run in a terminal:
-     `python -c "import secrets; print(secrets.token_hex(32))"`
-3. **Upload to GitHub.** Push this project to your repository. Keep credentials out of GitHub,
-   including in private repositories.
-4. **Import to Vercel.** Add New Project, pick the repo. Before deploying, open
-   Environment Variables and add the four values above (optional: `GEMINI_MODEL`).
-5. **Deploy.** Open the link, log in with `SITE_PASSWORD`. Use the three-dot menu for the admin panel.
-
-If you add or change an environment variable later, redeploy the project so it takes effect.
-
-## What is protected
-
-- The Gemini key is only on the server. Visitors cannot see it in the page, the code or the network tab.
-- When `SITE_PASSWORD` is set, nobody can chat without it, helping protect your quota.
-- Admin panel needs a second password, checked on the server.
-- Login attempts are limited (8 per 15 minutes per IP) and wrong guesses are slowed down.
-- Login tokens are signed and expire (site: 30 days, admin: 30 minutes).
-- Strict security headers: blocks injected scripts, embedding in other sites, and leaks.
-- Messages are shown as plain text, so pasted HTML or scripts cannot run.
-
-## What is not covered (be aware)
-
-- No site is 100% unhackable. This setup closes the common holes for a personal project.
-- Use long, unique passwords. A weak `SITE_PASSWORD` is the easiest way in.
-- Name, picture, behaviour, chat file and chat history are saved in each phone's browser.
-  Anyone who can unlock your phone can read that chat.
-- The rate limiter is best-effort on serverless hosting. For stronger limits, add a store such as
-  Upstash Redis.
-- Set a spending limit or alerts on your Google Cloud project.

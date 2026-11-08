@@ -1,6 +1,25 @@
 {
   "name": "angel-sadia",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Angel Sadia - Bangladeshi Sweetheart AI Companion Chat",
   "private": true,
-  "engines": { "node": "26.x" }
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs",
+    "dev": "node --watch server.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai-girlfriend",
+    "angel-sadia",
+    "gemini",
+    "bangladesh",
+    "chat"
+  ],
+  "author": "Angel Sadia Project",
+  "license": "MIT"
 }
+
