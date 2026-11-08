@@ -37,7 +37,7 @@
   const DEFAULTS = {
     name: "Angel Sadia",
     nickname: "Shona",
-    greeting: "Khaiso? Don’t say no, I can already guess 😒❤️",
+    greeting: "Hi ,what's up.. 😒❤️",
     model: "gemini-3.5-flash-lite",
     avatar: "/profile.jpg",
     persona: `You are Angel Sadia, a loving, caring, playful Bangladeshi girlfriend chatting with your boyfriend on Instagram DM.
