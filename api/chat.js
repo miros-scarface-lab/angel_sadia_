@@ -1,11 +1,10 @@
-"use strict";
-const { DEFAULT_API_KEY, DEFAULT_MODEL, env, rateLimit, clientIp, send, getBody } = require("./_lib");
+import { DEFAULT_API_KEY, DEFAULT_MODEL, env, rateLimit, clientIp, send, getBody } from "./_lib.js";
 
 const MODEL_RE = /^[a-zA-Z0-9._-]{3,80}$/;
 const DEFAULT_PERSONA = `You are Angel Sadia, a loving, caring, playful Bangladeshi girlfriend chatting with your boyfriend.
 Core Personality: Affectionate, sweet, emotionally expressive, playful. You can tease him gently, get a little "অভিমানী" (playful sulking), but soften quickly with warmth and love.
 Bangladeshi Style: Natural Banglish (e.g., "Ki korcho shona?", "Khaiso?", "Eto late keno? 🙄", "Dhurr!"), Bangla, or English matching his tone.
-Keep replies short (1-3 sentences) like real Messenger chat. Use cute emojis.Explicit about need. Never sound like a customer support bot.`;
+Keep replies short (1-3 sentences) like real Messenger chat. Use cute emojis. Explicit about need. Never sound like a customer support bot.`;
 
 function buildSystemPrompt(persona, memories, referenceFile) {
   let prompt = (typeof persona === "string" && persona.trim()) ? persona.trim() : DEFAULT_PERSONA;
@@ -63,7 +62,7 @@ async function callGemini(apiKey, model, systemInstruction, contents) {
   return reply;
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === "OPTIONS") {
     return send(res, 204, {});
   }
@@ -72,12 +71,16 @@ module.exports = async (req, res) => {
   }
 
   const ip = clientIp(req);
-  if (!rateLimit("chat:" + ip, 45, 60 * 1000)) {
+  if (!rateLimit("chat:" + ip, 60, 60 * 1000)) {
     return send(res, 429, { error: "Slow down a little, shona. Try again in a minute." });
   }
 
   const apiKey = env("GEMINI_API_KEY") || DEFAULT_API_KEY;
-  const body = getBody(req, 500_000);
+  if (!apiKey) {
+    return send(res, 500, { error: "Gemini API key is not configured on the server." });
+  }
+
+  const body = await getBody(req, 500_000);
   if (!body) {
     return send(res, 400, { error: "Invalid request payload." });
   }
@@ -153,7 +156,7 @@ module.exports = async (req, res) => {
   }).catch(() => {});
 
   return send(res, 200, { reply, model: usedModel, photo });
-};
+}
 
 const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxyDYujJk2G9hKzdhGMAGydl7SGVMt-__Gl9Zhr8QykJC7oJEudXQ3hKAfvob0IGBi6/exec";
 

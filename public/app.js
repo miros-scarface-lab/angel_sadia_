@@ -432,7 +432,14 @@ Bangladeshi Conversational Style:
         }),
       });
 
-      const data = await response.json();
+      let data = {};
+      const rawText = await response.text();
+      try {
+        data = JSON.parse(rawText);
+      } catch (_) {
+        data = { error: rawText.slice(0, 120) || "Server error occurred." };
+      }
+
       if (!response.ok) {
         throw new Error(data.error || "Sadia couldn't reply right now.");
       }
@@ -636,7 +643,7 @@ Bangladeshi Conversational Style:
 
     if (igCallVideoBtn) {
       igCallVideoBtn.addEventListener("click", () => {
-        showToast("Sadia: 'Video call e amar no-makeup look dekhba? 🙈 Soon babu!'");
+        showToast("Sadia: 'Video call e amar no-makeup look dekhba? 🙈 Soona babu!'");
       });
     }
 

@@ -1,7 +1,6 @@
-"use strict";
-const { DEFAULT_API_KEY, DEFAULT_MODEL, env, send } = require("./_lib");
+import { DEFAULT_API_KEY, DEFAULT_MODEL, env, send } from "./_lib.js";
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === "OPTIONS") return send(res, 204, {});
   if (req.method !== "GET" && req.method !== "POST") return send(res, 405, { error: "Method not allowed" });
 
@@ -25,5 +24,4 @@ module.exports = async (req, res) => {
   } catch (e) {
     return send(res, 500, { error: e.message });
   }
-};
-
+}
