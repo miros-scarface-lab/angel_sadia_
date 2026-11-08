@@ -717,6 +717,48 @@ Bangladeshi Conversational Style:
     console.error("Event listeners bind error:", e);
   }
 
+  /* ================= 15. MOBILE KEYBOARD & VIEWPORT LOCK ================= */
+  try {
+    const shell = document.querySelector(".ig-shell");
+
+    const fixViewport = () => {
+      // Force window scroll back to 0 so header never moves
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+
+      if (window.visualViewport && window.innerWidth <= 500 && shell) {
+        shell.style.height = `${window.visualViewport.height}px`;
+      }
+      scrollToBottom();
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", fixViewport);
+      window.visualViewport.addEventListener("scroll", () => {
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+      });
+    }
+
+    messageInput?.addEventListener("focus", () => {
+      setTimeout(fixViewport, 80);
+      setTimeout(fixViewport, 250);
+    });
+
+    messageInput?.addEventListener("blur", () => {
+      setTimeout(() => {
+        if (shell && window.innerWidth <= 500) {
+          shell.style.height = "100dvh";
+        }
+        window.scrollTo(0, 0);
+        document.body.scrollTop = 0;
+      }, 100);
+    });
+  } catch (vpErr) {
+    console.warn("Viewport lock init:", vpErr);
+  }
+
   /* ================= 16. BULLETPROOF INITIALIZATION ================= */
   try {
     applyTheme(currentTheme);
